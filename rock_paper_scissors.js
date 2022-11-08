@@ -15,27 +15,37 @@ function createRoundResults() {
   let computerScore = 0;
 
   return (result) => {
+    const playerScoreNode = document.querySelector(".player.score");
+    const computerScoreNode = document.querySelector(".computer.score");
+
     if (result === "win") {
-      playerScore += 1;
+      playerScore += 1; 
+      playerScoreNode.classList.add("increment");
     } else if (result === "lose") {
       computerScore += 1;
+      computerScoreNode.classList.add("increment");
     }
     
-    const playerScoreNode = document.getElementById("player-score");
-    const computerScoreNode = document.getElementById("computer-score");
     playerScoreNode.textContent = `Player Score: ${playerScore}`;
     computerScoreNode.textContent = `Computer Score: ${computerScore}`;
 
     if (playerScore === 5 || computerScore === 5) {
       rpsButtons.forEach(button => button.disabled = true);
 
-      getGameResults(playerScore, computerScore);
-
-      restartButton.textContent = "RESTART";
-      restartButton.style.visibility = "visible";
-      restartButton.addEventListener("click", restartGame);
+      setTimeout(() => getGameResults(playerScore, computerScore), 1000);
+      
+      setTimeout(() => {
+        restartButton.textContent = "RESTART";
+        restartButton.style.visibility = "visible";
+        restartButton.addEventListener("click", restartGame);
+      }, 1000);
     }
   }
+}
+
+function removeTransition(e) {
+  if (e.propertyName !== "transform") return;
+  this.classList.remove("increment");
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -88,9 +98,12 @@ function playGame(e) {
 
 const getRoundResults = createRoundResults();
 
-const roundResultDiv = document.querySelector("div#round-result");
-const gameResultDiv = document.querySelector("div#game-result");
-const restartButton = document.querySelector("button#restart");
+const roundResultDiv = document.querySelector(".round.result");
+const gameResultDiv = document.querySelector(".game.result");
+const restartButton = document.querySelector("#restart");
+
+const scoreNodes = document.querySelectorAll('.score');
+scoreNodes.forEach(node => node.addEventListener('transitionend', removeTransition));
 
 const rpsButtons = document.querySelectorAll("#rock, #paper, #scissors");
 rpsButtons.forEach(button => button.addEventListener('click', playGame));
