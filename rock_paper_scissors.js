@@ -31,7 +31,7 @@ function createRoundResults() {
 
       getGameResults(playerScore, computerScore);
 
-      restartButton.textContent = "Play again";
+      restartButton.textContent = "RESTART";
       restartButton.style.visibility = "visible";
       restartButton.addEventListener("click", restartGame);
     }
