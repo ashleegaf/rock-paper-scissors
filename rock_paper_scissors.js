@@ -8,13 +8,30 @@ function getGameResults(playerScore, computerScore) {
   } else {
     gameResultDiv.textContent = `Congrats! You beat computer ${playerScore} to ${computerScore}.`;
   }
+  gameResultDiv.style.visibility = "visible";
+}
+
+function endGame(playerScore, computerScore) {
+  rpsButtons.forEach(button => {
+    button.disabled = true;
+    button.classList.add("disabled");
+  });
+
+  setTimeout(() => getGameResults(playerScore, computerScore), 1000);
+  
+  setTimeout(() => {
+    restartButton.textContent = "RESTART";
+    restartButton.style.visibility = "visible";
+    restartButton.addEventListener("click", restartGame);
+  }, 1000);
 }
 
 function createRoundResults() {
   let playerScore = 0;
   let computerScore = 0;
 
-  return (result) => {
+  return (num, result) => {
+    const roundCounterDiv = document.querySelector("#round-counter");
     const playerScoreNode = document.querySelector(".player.score");
     const computerScoreNode = document.querySelector(".computer.score");
 
@@ -26,20 +43,20 @@ function createRoundResults() {
       computerScoreNode.classList.add("increment");
     }
     
+    roundCounterDiv.textContent = `Round ${num}`;
     playerScoreNode.textContent = `Player Score: ${playerScore}`;
     computerScoreNode.textContent = `Computer Score: ${computerScore}`;
 
-    if (playerScore === 5 || computerScore === 5) {
-      rpsButtons.forEach(button => button.disabled = true);
+    if (playerScore === 3 || computerScore === 3) endGame(playerScore, computerScore);
+  }
+}
 
-      setTimeout(() => getGameResults(playerScore, computerScore), 1000);
-      
-      setTimeout(() => {
-        restartButton.textContent = "RESTART";
-        restartButton.style.visibility = "visible";
-        restartButton.addEventListener("click", restartGame);
-      }, 1000);
-    }
+function createRoundCounter() {
+  let counter = 0;
+
+  return () => {
+    counter += 1;
+    return counter;
   }
 }
 
@@ -92,10 +109,13 @@ function getComputerChoice() {
 function playGame(e) {
   const computerSelection = getComputerChoice();
   const playerSelection = e.target.id;
-  const result = playRound(playerSelection, computerSelection);
-  getRoundResults(result);
+  const roundNum = incrementRound();
+  const roundResult = playRound(playerSelection, computerSelection);
+  
+  getRoundResults(roundNum, roundResult);
 }
 
+const incrementRound = createRoundCounter();
 const getRoundResults = createRoundResults();
 
 const roundResultDiv = document.querySelector(".round.result");
