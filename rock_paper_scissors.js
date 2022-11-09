@@ -31,7 +31,7 @@ function createRoundResults() {
   let computerScore = 0;
 
   return (num, result) => {
-    const roundCounterDiv = document.querySelector("#round-counter");
+    const roundCounterDiv = document.querySelector(".round.counter");
     const playerScoreNode = document.querySelector(".player.score");
     const computerScoreNode = document.querySelector(".computer.score");
 
