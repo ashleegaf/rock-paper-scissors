@@ -17,15 +17,15 @@ button,
 }
 
 .content {
-  flex: auto;
+  flex: 1 0 auto; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: space-evenly;
 }
 
 h3 {
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
 }
 
 span {
@@ -65,8 +65,6 @@ button:hover:enabled {
 }
 
 .game.result {
-  margin-top: 30px;
-  margin-bottom: 20px;
   font-size: 20px;
   color: #3866d2;
 }
@@ -76,9 +74,23 @@ button:hover:enabled {
   visibility: hidden;
 }
 
+.announce {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 70px;
+}
+.update {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px;
+}
 .round.result {
   font-size: 20px;
-  margin-bottom: 10px;
   color: #0ac3a1;
 }
 .round.counter {
