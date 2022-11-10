@@ -7,41 +7,56 @@
     <script src="./rock_paper_scissors.js" defer></script>
   </head>
   <body>
-    <div class="header logo">
-      <h2>AG Game Central</h2>
-    </div>
-    <div class="header navigation">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="./index.html">Rock, Paper, Scissors</a></li>
-          <li><a href="#">Tic-Tac-Toe</a></li>
-          <li><a href="#">Flip a Coin</a></li>
-        </ul>
-    </div>
+    <h1>ROCK, PAPER, SCISSORS</h1>
     <div class="content">
-      <h2>Rock, Paper, Scissors</h2>
-      <h3>Play a free computer-generated game of rock, paper, scissors. Ready?</h3>
-      <p>There are only two rules to play:</p>
       <div>
-        <ol>
-          <li>Click a button to make your move</li>
-          <li>Be the first to score 3 points to win</li>
-        </ol>
+        <h3>In the ultimate challenge of human against computer, who will win?</h3>
+        <p>Two rules to play:</p>
+        <div>
+          <ol>
+            <li>Click a button to make your move</li>
+            <li>Be the first to score 3 points to win</li>
+          </ol>
+        </div>
       </div>
-      <div class="button">
-        <button id="rock">ROCK</button>
-        <button id="paper">PAPER</button>
-        <button id="scissors">SCISSORS</button>
+
+      <div class="buttons">
+        <button class="rps btn" id="rock">
+          <img src="./icons/rock.png" alt="rock">
+        </button>
+        <button class="rps btn" id="paper"> 
+          <img src="./icons/new-document.png" alt="paper">
+        </button>
+        <button class="rps btn" id="scissors">
+          <img src="./icons/scissors.png" alt="scissors">
+        </button>
       </div>
-      <div class="round counter"></div>
+
       <div class="round result"></div>
-      <div class="score-container">
-        <div class="player score "></div>
-        <div class="computer score"></div>
+      <div class="scoreboard">
+        <div class="round counter"></div>
+        <div class="scores">
+          <div class="player score "></div>
+          <div class="computer score"></div>
+        </div>
       </div>
+
       <div class="game result"></div>
       <div>
-        <button id="restart"></button>
+        <button class="restart btn" id="restart"></button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="portfolio">
+        <a href="https://github.com/ashleegaf/"><img src="./icons/GitHub-Mark-32px.png"></a>
+        Developed by @ashleegaf
+      </div>
+      
+      <div class="credits">
+        <a href="https://www.flaticon.com/free-icons/rock" title="rock icons">Rock icons created by Nadiinko - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/paper" title="paper icons">Paper icons created by Freepik - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/scissors" title="scissors icons">Scissors icons created by Freepik - Flaticon</a>
       </div>
     </div>
   </body>
