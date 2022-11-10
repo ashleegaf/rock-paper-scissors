@@ -4,11 +4,13 @@ function restartGame() {
 
 function getGameResults(playerScore, computerScore) {
   if (computerScore > playerScore) {
-    gameResultDiv.textContent = `Oh no! Computer beat you ${computerScore} to ${playerScore}.`;
+    gameResult.textContent =
+      `Oh no! Computer beat you ${computerScore} to ${playerScore}.`;
   } else {
-    gameResultDiv.textContent = `Congrats! You beat computer ${playerScore} to ${computerScore}.`;
+    gameResult.textContent =
+      `Congrats! You beat computer ${playerScore} to ${computerScore}.`;
   }
-  gameResultDiv.style.visibility = "visible";
+  gameResult.style.visibility = "visible";
 }
 
 function endGame(playerScore, computerScore) {
@@ -44,10 +46,12 @@ function createRoundResults() {
     }
     
     roundCounterDiv.textContent = `Round ${num}`;
-    playerScoreNode.textContent = `Player Score: ${playerScore}`;
-    computerScoreNode.textContent = `Computer Score: ${computerScore}`;
+    playerScoreNode.textContent = `Player Score ${playerScore}`;
+    computerScoreNode.textContent = `Computer Score ${computerScore}`;
 
-    if (playerScore === 3 || computerScore === 3) endGame(playerScore, computerScore);
+    if (playerScore === 3 || computerScore === 3) {
+      endGame(playerScore, computerScore);
+    }
   }
 }
 
@@ -68,33 +72,33 @@ function removeTransition(e) {
 function playRound(playerSelection, computerSelection) {
   if (computerSelection === "rock") {
     if (playerSelection === "rock") {
-      roundResultDiv.textContent = "It's a tie. You both played rock.";
+      roundResult.textContent = "It's a tie. You both played rock.";
     } else if (playerSelection === "paper") {
-      roundResultDiv.textContent = "You win! Paper beats rock.";
+      roundResult.textContent = "You win! Paper beats rock.";
       return "win";
     } else {
-      roundResultDiv.textContent = "You lose! Rock beats scissors.";
+      roundResult.textContent = "You lose! Rock beats scissors.";
       return "lose";
     }
   } else if (computerSelection === "paper") {
     if (playerSelection === "rock") {
-      roundResultDiv.textContent = "You lose! Paper beats rock.";
+      roundResult.textContent = "You lose! Paper beats rock.";
       return "lose";
     } else if (playerSelection === "paper") {
-      roundResultDiv.textContent = "It's a tie. You both played paper.";
+      roundResult.textContent = "It's a tie. You both played paper.";
     } else {
-      roundResultDiv.textContent = "You win! Scissors beats paper.";
+      roundResult.textContent = "You win! Scissors beats paper.";
       return "win";
     }
   } else {
     if (playerSelection === "rock") {
-      roundResultDiv.textContent = "You win! Rock beats scissors.";
+      roundResult.textContent = "You win! Rock beats scissors.";
       return "win";
     } else if (playerSelection === "paper") {
-      roundResultDiv.textContent = "You lose! Scissors beats paper.";
+      roundResult.textContent = "You lose! Scissors beats paper.";
       return "lose";
     } else {
-      roundResultDiv.textContent = "It's a tie. You both played scissors.";
+      roundResult.textContent = "It's a tie. You both played scissors.";
     }
   }
 }
@@ -108,7 +112,7 @@ function getComputerChoice() {
 
 function playGame(e) {
   const computerSelection = getComputerChoice();
-  const playerSelection = e.target.id;
+  const playerSelection = e.target.alt;
   const roundNum = incrementRound();
   const roundResult = playRound(playerSelection, computerSelection);
   
@@ -118,8 +122,8 @@ function playGame(e) {
 const incrementRound = createRoundCounter();
 const getRoundResults = createRoundResults();
 
-const roundResultDiv = document.querySelector(".round.result");
-const gameResultDiv = document.querySelector(".game.result");
+const roundResult = document.querySelector(".round.result");
+const gameResult = document.querySelector(".game.result");
 const restartButton = document.querySelector("#restart");
 
 const scoreNodes = document.querySelectorAll('.score');
