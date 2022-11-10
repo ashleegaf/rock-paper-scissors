@@ -33,9 +33,12 @@ function createRoundResults() {
   let computerScore = 0;
 
   return (num, result) => {
-    const roundCounterDiv = document.querySelector(".round.counter");
+    const roundCounter = document.querySelector(".round.counter");
     const playerScoreNode = document.querySelector(".player.score");
     const computerScoreNode = document.querySelector(".computer.score");
+    const scoreboard = document.querySelector(".scoreboard");
+
+    scoreboard.style.visibility = "visible";
 
     if (result === "win") {
       playerScore += 1; 
@@ -45,7 +48,7 @@ function createRoundResults() {
       computerScoreNode.classList.add("increment");
     }
     
-    roundCounterDiv.textContent = `Round ${num}`;
+    roundCounter.textContent = `Round ${num}`;
     playerScoreNode.textContent = `Player Score ${playerScore}`;
     computerScoreNode.textContent = `Computer Score ${computerScore}`;
 
